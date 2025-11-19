@@ -16,21 +16,45 @@
    PAYLOAD_SECRET=your-secret-key-here
    ```
 
-3. Start dev server:
+3. Check for duplicate dependencies (as recommended by Payload team):
+   ```bash
+   ./check-dependencies.sh
+   ```
+   Or manually check using:
+   ```bash
+   find node_modules -name "payload" -type d
+   find node_modules -name "@payloadcms" -type d
+   ```
+
+4. Start dev server:
    ```bash
    bun dev
    ```
 
-4. Navigate to `http://localhost:3000/admin`
+5. Navigate to `http://localhost:3000/admin`
 
-5. Error occurs: "Cannot destructure property 'config' of 'ue(...)' as it is undefined"
+6. Error occurs: "Cannot destructure property 'config' of 'ue(...)' as it is undefined"
 
 ## Environment
 - Payload CMS: 3.63.0
-- Next.js: 15.1.6
-- React: 18
+- Next.js: 15.4.7 (recommended by Payload)
+- React: 19 (required by Payload)
 - Node.js: 20.19.5
 
 ## Structure
 - Uses `src/app/` folder structure (latest Payload convention)
 - Updated `tsconfig.json` configuration
+- Includes all collections mentioned in bug report:
+  - Users
+  - Articles
+  - Courses
+  - Services
+  - Testimonials
+  - Companies
+  - Media
+
+## Notes
+- No client-side imports of Payload (verified)
+- No components imported into admin config
+- All Payload packages are on version 3.63.0 (no duplicates found)
+- Using supported versions: React 19 (required) and Next.js 15.4.7 (recommended)
